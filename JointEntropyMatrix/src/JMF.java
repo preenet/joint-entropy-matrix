@@ -14,7 +14,10 @@ public class JMF {
 	}
 	
 	public JMF(int x, int y) {
-		
+		this.x = x;
+		this.y = y;
+		this.frequency = 0;
+		this.probability = 0.0;
 	}
 
 	/**
@@ -73,6 +76,10 @@ public class JMF {
 	 */
 	public void setProbability(double probability) {
 		this.probability = probability;
+	}
+	
+	public void increment() {
+		this.frequency++;
 	}
 	
 	/* (non-Javadoc)
