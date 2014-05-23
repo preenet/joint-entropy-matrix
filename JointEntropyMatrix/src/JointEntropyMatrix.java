@@ -15,37 +15,18 @@ import java.util.Vector;
 public class JointEntropyMatrix {
 	private Vector<Integer> X;
 	private Vector<Integer> Y;
-	private int[][] matrix;
+	private Vector<JMF> jmf;
+
 	
 	public JointEntropyMatrix(Vector<Integer> X, Vector<Integer> Y) {
 		this.X = X;
 		this.Y = Y;
-		this.matrix = new int[X.size()][Y.size()];
-		
-		initMatrix();
-		showMatrix();
-		
+		this.jmf = new Vector<JMF>();
+
 	}// end default constructor
-	
-	private void initMatrix() {
-		for(int i = 0; i < X.size(); i++)
-			for(int j = 0; j < Y.size(); j++) {
-				matrix[i][j] = 0;
-			}
-	}
-	
-	private void occurrence() {
+
+	public void checkOccur() {
 		
-	}
-	
-	public void showMatrix() {
-		for(int i = 0; i < X.size(); i++)
-			for(int j = 0; j < Y.size(); j++) {
-				System.out.print(matrix[i][j] + " ");
-				if(j == Y.size()-1)
-					System.out.println();
-			}
-		System.out.println();
 	}
 
 }// end class JointEntropyMatrix
