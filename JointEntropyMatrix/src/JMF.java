@@ -24,6 +24,8 @@ public class JMF {
 		return x;
 	}
 
+	
+
 	/**
 	 * @param x the x to set
 	 */
@@ -73,5 +75,13 @@ public class JMF {
 		this.probability = probability;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "JMF [x=" + x + ", y=" + y + ", frequency=" + frequency
+				+ ", probability=" + probability + "]";
+	}
 	
 }// end class
