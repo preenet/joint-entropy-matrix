@@ -27,40 +27,27 @@ public class JointEntropyMatrix {
 		this.myJMF = null;
 		this.jointEntropy = 0.0;
 		this.totalProb = 0.0;
-		
-		displayX();
-		
-		displayY();
-		
 		calculateJMF();
-		
 	}// end default constructor
 
 	public void calculateJMF() {
 		// count frequency (occurrence) from the elements in X and Y
-		
 		for (int i = 0; i < X.size(); i++) {
-			
 				// check if it is alright to insert into the array of object
 				
-				System.out.println("Checking (" +X.elementAt(i) +", " +Y.elementAt(i) + ")");
 				if(isValidKey(X.elementAt(i), Y.elementAt(i))) {
-					System.out.println("Key is valid (" +X.elementAt(i) +", " +Y.elementAt(i) + ")");
 					myJMF = new JMF(X.elementAt(i), Y.elementAt(i));
 					myJMF.increment();
 					jmf.add(myJMF);
-					System.out.println("Added to JMF array");
+
 					displayJMF();
 				}
 				
 				// in this case it is already exist in the array of object
 				// so, we just get the index of that object and increment the frequency attribute
 				// by one.
-				else {
-					System.out.println("Key is existed, incrementing.");
-					System.out.println("(" + X.elementAt(i) + ", " + Y.elementAt(i) +")");
-					jmf.elementAt(getKey(X.elementAt(i), Y.elementAt(i))).increment();;
-				}
+				else 
+					jmf.elementAt(getKey(X.elementAt(i), Y.elementAt(i))).increment();;	
 		}
 		calculateProbability();
 		displayJMF();
@@ -80,10 +67,8 @@ public class JointEntropyMatrix {
 	
 	public void calculateJointEntropy() {
 		  /*H(X,Y) = - sumx sumy p(xy) log p(xy)*/
-
 		for (int i = 0; i < jmf.size(); i++)
 			jointEntropy -= jmf.elementAt(i).getProbability() * logBaseTwo(jmf.elementAt(i).getProbability());
-
 	}
 	
 	public void calculateTotalProbability() {
