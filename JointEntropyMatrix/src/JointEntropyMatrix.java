@@ -17,12 +17,16 @@ public class JointEntropyMatrix {
 	private Vector<Integer> Y;
 	private Vector<JMF> jmf;
 	private JMF myJMF;
+	private double jointEntropy;
+	private double totalProb;
 	
 	public JointEntropyMatrix(Vector<Integer> X, Vector<Integer> Y) {
 		this.X = X;
 		this.Y = Y;
 		this.jmf = new Vector<JMF>();
 		this.myJMF = null;
+		this.jointEntropy = 0.0;
+		this.totalProb = 0.0;
 		
 		displayX();
 		
@@ -35,14 +39,14 @@ public class JointEntropyMatrix {
 	public void calculateJMF() {
 		// count frequency (occurrence) from the elements in X and Y
 		
-		for (int i = 0; i < X.size(); i++)
-			for (int j = 0; j < Y.size(); j++) {
+		for (int i = 0; i < X.size(); i++) {
+			
 				// check if it is alright to insert into the array of object
-				// 
-				System.out.println("Checking (" +X.elementAt(i) +", " +Y.elementAt(j) + ")");
-				if(isValidKey(X.elementAt(i), Y.elementAt(j))) {
-					System.out.println("Key is valid (" +X.elementAt(i) +", " +Y.elementAt(j) + ")");
-					myJMF = new JMF(X.elementAt(i), Y.elementAt(j));
+				
+				System.out.println("Checking (" +X.elementAt(i) +", " +Y.elementAt(i) + ")");
+				if(isValidKey(X.elementAt(i), Y.elementAt(i))) {
+					System.out.println("Key is valid (" +X.elementAt(i) +", " +Y.elementAt(i) + ")");
+					myJMF = new JMF(X.elementAt(i), Y.elementAt(i));
 					myJMF.increment();
 					jmf.add(myJMF);
 					System.out.println("Added to JMF array");
@@ -54,23 +58,37 @@ public class JointEntropyMatrix {
 				// by one.
 				else {
 					System.out.println("Key is existed, incrementing.");
-					System.out.println("(" + X.elementAt(i) + ", " + Y.elementAt(j) +")");
-					jmf.elementAt(getKey(X.elementAt(i), Y.elementAt(j))).increment();;
+					System.out.println("(" + X.elementAt(i) + ", " + Y.elementAt(i) +")");
+					jmf.elementAt(getKey(X.elementAt(i), Y.elementAt(i))).increment();;
 				}
-			}
+		}
 		calculateProbability();
 		displayJMF();
 	}
 	
 	private void calculateProbability() {
-		
 		// find the total of possible outcome.
 		int possibleOutcome = 0;
 		for (int i = 0; i < jmf.size(); i++) 
 			possibleOutcome += jmf.elementAt(i).getFrequency();
 		
+		System.out.println("possibleOC: " + possibleOutcome);
+		
 		for (int i = 0; i < jmf.size(); i++)
 			jmf.elementAt(i).setProbability((double) jmf.elementAt(i).getFrequency() / possibleOutcome);
+	}
+	
+	public void calculateJointEntropy() {
+		  /*H(X,Y) = - sumx sumy p(xy) log p(xy)*/
+
+		for (int i = 0; i < jmf.size(); i++)
+			jointEntropy -= jmf.elementAt(i).getProbability() * logBaseTwo(jmf.elementAt(i).getProbability());
+
+	}
+	
+	public void calculateTotalProbability() {
+		for (int i = 0; i < jmf.size(); i++)
+			totalProb += jmf.elementAt(i).getProbability();
 	}
 	
 	private boolean isValidKey(int x, int y) {
@@ -94,6 +112,10 @@ public class JointEntropyMatrix {
 		return -1;
 	}
 	
+	private double logBaseTwo(double x) {
+	    return Math.log(x) / Math.log(2);
+	}
+	
 	public void displayX() {
 		System.out.println("X: ");
 		for (int i = 0; i < X.size(); i++)
@@ -113,5 +135,13 @@ public class JointEntropyMatrix {
 		for(int i = 0; i < jmf.size(); i++)
 			System.out.println(jmf.elementAt(i));
 		System.out.println();
+	}
+	
+	public double getJointEntropy() {
+		return this.jointEntropy;
+	}
+	
+	public double getTotalProbability() {
+		return this.totalProb;
 	}
 }// end class JointEntropyMatrix
