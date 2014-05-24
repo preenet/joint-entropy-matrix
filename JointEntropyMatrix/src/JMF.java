@@ -27,8 +27,6 @@ public class JMF {
 		return x;
 	}
 
-	
-
 	/**
 	 * @param x the x to set
 	 */
@@ -87,7 +85,7 @@ public class JMF {
 	 */
 	@Override
 	public String toString() {
-		return "JMF [x=" + x + ", y=" + y + ", frequency=" + frequency
+		return "JMF [x=" + x + ", y=" + y + ", frequency=" + (int)frequency
 				+ ", probability=" + probability + "]";
 	}
 	
