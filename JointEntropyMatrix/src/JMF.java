@@ -6,7 +6,7 @@
 public class JMF {
 	private int x;
 	private int y;
-	private int frequency;
+	private double frequency;
 	private double probability;
 	
 	public JMF() {
@@ -53,7 +53,7 @@ public class JMF {
 	/**
 	 * @return the frequency
 	 */
-	public int getFrequency() {
+	public double getFrequency() {
 		return frequency;
 	}
 
