@@ -39,8 +39,6 @@ public class JointEntropyMatrix {
 					myJMF = new JMF(X.elementAt(i), Y.elementAt(i));
 					myJMF.increment();
 					jmf.add(myJMF);
-
-					displayJMF();
 				}
 				
 				// in this case it is already exist in the array of object
@@ -54,15 +52,8 @@ public class JointEntropyMatrix {
 	}
 	
 	private void calculateProbability() {
-		// find the total of possible outcome.
-		int possibleOutcome = 0;
-		for (int i = 0; i < jmf.size(); i++) 
-			possibleOutcome += jmf.elementAt(i).getFrequency();
-		
-		System.out.println("possibleOC: " + possibleOutcome);
-		
 		for (int i = 0; i < jmf.size(); i++)
-			jmf.elementAt(i).setProbability((double) jmf.elementAt(i).getFrequency() / possibleOutcome);
+			jmf.elementAt(i).setProbability((double) jmf.elementAt(i).getFrequency() / X.size());
 	}
 	
 	public void calculateJointEntropy() {
@@ -101,20 +92,6 @@ public class JointEntropyMatrix {
 	    return Math.log(x) / Math.log(2);
 	}
 	
-	public void displayX() {
-		System.out.println("X: ");
-		for (int i = 0; i < X.size(); i++)
-			System.out.println(X.elementAt(i));
-		System.out.println();
-	}
-	
-	public void displayY() {
-		System.out.println("Y: ");
-		for (int i = 0; i < Y.size(); i++)
-			System.out.println(Y.elementAt(i));
-		System.out.println();
-	}
-
 	public void displayJMF() {
 		System.out.println("JMF: ");
 		for(int i = 0; i < jmf.size(); i++)
