@@ -53,7 +53,7 @@ public class JointEntropyMatrix {
 	
 	private void calculateProbability() {
 		for (int i = 0; i < jmf.size(); i++)
-			jmf.elementAt(i).setProbability((double) jmf.elementAt(i).getFrequency() / X.size());
+			jmf.elementAt(i).setProbability(jmf.elementAt(i).getFrequency() / X.size());
 	}
 	
 	public void calculateJointEntropy() {
@@ -69,7 +69,6 @@ public class JointEntropyMatrix {
 	
 	private boolean isValidKey(int x, int y) {
 		
-		System.out.println("isValid (" + x + ", " +y +")");
 		if(jmf.size() == 0)
 			return true;
 		
