@@ -50,6 +50,10 @@ public class JEM {
 		System.out.println("Size of input: " + Y.size());
 		
 		myJEM = new JointEntropyMatrix(X, Y);
+		myJEM.calculateTotalProbability();
+		System.out.println("Total Probability = " + myJEM.getTotalProbability());
+		myJEM.calculateJointEntropy();
+		System.out.println("H(X,Y) = " + myJEM.getJointEntropy());
 		
 		System.out.println("Done!...");
 	}
