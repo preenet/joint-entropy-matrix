@@ -61,7 +61,6 @@ public class JointEntropyMatrix {
 	}
 	
 	private boolean isValidKey(int x, int y) {
-		
 		if(jmf.size() == 0)
 			return true;
 		
