@@ -1,12 +1,6 @@
 /**
  * 
  * @author pthiengburanathum
- * 1)Initialisation of the n*m matrix 
- * 2)Count occurrence of each base pair in this pair of columns
- * 3)Calculate total number of base pairs  
- * 4)Loop through the different base pair types (e.g. A:A, A:C, A:G, etc.)
- * 5)Compute the frequency of a given base pair
- * 6)Add new entropy term to the total joint entropy
  */
 
 import java.util.Vector;
@@ -40,7 +34,6 @@ public class JointEntropyMatrix {
 					myJMF.increment();
 					jmf.add(myJMF);
 				}
-				
 				// in this case it is already exist in the array of object
 				// so, we just get the index of that object and increment the frequency attribute
 				// by one.
@@ -92,7 +85,6 @@ public class JointEntropyMatrix {
 	}
 	
 	public void displayJMF() {
-		System.out.println("JMF: ");
 		for(int i = 0; i < jmf.size(); i++)
 			System.out.println(jmf.elementAt(i));
 		System.out.println();
